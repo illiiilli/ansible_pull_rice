@@ -36,7 +36,7 @@
         - ksysguard
         - less
         - mpv
-        - qbitorrent
+        - qbittorrent
         - youtube-dl
       state: present
 
