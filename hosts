@@ -1,4 +1,4 @@
 ---
 all:
    workstations:
-     phoenixlinux
+     phoenixlinux:
