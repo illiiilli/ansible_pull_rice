@@ -4,6 +4,10 @@
   become: true # become = become superuser
 
   tasks:
-  - name: install htop
+  - name: install packages
     package:
-      name: htop
+      name: 
+        - htop
+        - vim
+        - delta
+
