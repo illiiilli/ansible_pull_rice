@@ -1,6 +1,2 @@
----
-all:
-  children:
-    workstations:
-      hosts:
-        phoenixlinux:
+[workstations]
+phoenixlinux
