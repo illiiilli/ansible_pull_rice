@@ -1,20 +1,20 @@
 ---
-# tasks to complete before running roles
-# - hosts: all
-#   tags: always
-#   become: true
-#   pre_tasks:
-#     - name: pre-run | update package cache (arch)
-#       tags: always
-#       community.general.pacman: update_cache=yes
-#       changed_when: False
-#       when: ansible_distribution == "Archlinux"
+tasks to complete before running roles
+- hosts: all
+  tags: always
+  become: true
+  pre_tasks:
+    - name: pre-run | update package cache (arch)
+      tags: always
+      community.general.pacman: update_cache=yes
+      changed_when: False
+      when: ansible_distribution == "Archlinux"
 
-#     - name: pre-run | update package cache (debian, etc)
-#       tags: always
-#       ansible.builtin.apt: update_cache=yes
-#       changed_when: False
-#       when: ansible_distribution in ["Debian", "Ubuntu"]
+    - name: pre-run | update package cache (debian, etc)
+      tags: always
+      ansible.builtin.apt: update_cache=yes
+      changed_when: False
+      when: ansible_distribution in ["Debian", "Ubuntu"]
 
 # run roles
 
@@ -39,13 +39,13 @@
         - youtube-dl
       state: present
 
-# end of run cleanup and reporting
-# - hosts: all
-#   become: true
-#   tasks:
-#   - name: Cleanup package cache (Debian and Ubuntu based only)
-#     tags: always
-#     ansible.builtin.apt:
-#       autoclean: yes
-#     changed_when: false
-#     when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+end of run cleanup and reporting
+- hosts: all
+  become: true
+  tasks:
+  - name: Cleanup package cache (Debian and Ubuntu based only)
+    tags: always
+    ansible.builtin.apt:
+      autoclean: yes
+    changed_when: false
+    when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
