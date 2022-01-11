@@ -1,2 +1,6 @@
-[workstations]
-phoenixlinux ansible_host=192.168.1.142
+all:
+  children:
+    workstations:
+      phoenixlinux:
+      think580:
+
