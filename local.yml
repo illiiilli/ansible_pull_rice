@@ -21,23 +21,23 @@
 - hosts: all
   become: true # become = become superuser
   tasks:
-  - name: Install essential packages (if not already installed)
-    ansible.builtin.package:
-      name: 
-        - ansible
-        - ansible-lint
-        - brave-bin
-        - discord
-        - git
-        - git-delta
-        - git-lfs
-        - htop
-        - ksysguard
-        - less
-        - mpv
-        - qbittorrent
-        - youtube-dl
-      state: present
+    - name: Install essential packages (if not already installed)
+      ansible.builtin.package:
+        name: 
+          - ansible
+          - ansible-lint
+          - brave-bin
+          - discord
+          - git
+          - git-delta
+          - git-lfs
+          - htop
+          - ksysguard
+          - less
+          - mpv
+          - qbittorrent
+          - youtube-dl
+        state: present
 
 - hosts: phoenixlinux
   become: true
@@ -53,19 +53,19 @@
 - hosts: all
   become: true
   tasks:
-  - name: Cleanup package cache (Debian and Ubuntu based only)
-    tags: always
-    ansible.builtin.apt:
-      autoclean: yes
-    changed_when: false
-    when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+    - name: Cleanup package cache (Debian and Ubuntu based only)
+      tags: always
+      ansible.builtin.apt:
+        autoclean: yes
+      changed_when: false
+      when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
 
-  - name: Autoremove orphan packages (Debian and Ubuntu based only)
-    tags: always
-    ansible.builtin.apt:
-      autoremove: yes
-      purge: yes
-    when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+    - name: Autoremove orphan packages (Debian and Ubuntu based only)
+      tags: always
+      ansible.builtin.apt:
+        autoremove: yes
+        purge: yes
+      when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
 
   # - name: send completion alert
   #   include_tasks: playbooks/send_completion_alert.yml
