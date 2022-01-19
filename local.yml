@@ -5,13 +5,13 @@
   tags: always
   become: true
   pre_tasks:
-    - name: pre-run | update package cache (Rrch)
+    - name: Update package cache (Arch)
       tags: always
       community.general.pacman: update_cache=yes
       changed_when: False
       when: ansible_distribution == "Archlinux"
 
-    - name: pre-run | update package cache (Debian, etc)
+    - name: Update package cache (Debian, etc)
       tags: always
       ansible.builtin.apt: update_cache=yes
       changed_when: False
