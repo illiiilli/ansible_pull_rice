@@ -82,8 +82,7 @@
       ansible.posix.mount:
         path: /home/illiiilli/network
         src: UUID=32E61FC7E61F8A6D
-        fstype: fuseblk
-        opts: rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other,blksize=4096,uhelper=udisks2
+        fstype: ntfs
         state: mounted
 
 - name: End of run cleanup and reporting
