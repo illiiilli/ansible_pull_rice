@@ -1,6 +1,6 @@
 all:
   children:
     workstations:
-      phoenixlinux:
-      think580:
-
+      hosts:
+        phoenixlinux:
+        think580:
