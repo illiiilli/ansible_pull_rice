@@ -56,6 +56,7 @@
     - name: Install essential packages with default package manager
       ansible.builtin.package:
         name: 
+          - cronie
           - ansible
           - ansible-lint
           - brave-bin
