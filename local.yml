@@ -17,6 +17,36 @@
       changed_when: False
       when: ansible_distribution in ["Debian", "Ubuntu"]
 
+- name: Automatically pull changes from Git repository
+  hosts: all
+  become: true
+  tasks:
+    - name: Make sure we have a 'wheel' group
+      ansible.builtin.group:
+        name: wheel
+        state: present
+    - name: Allow 'wheel' group to have passwordless sudo
+      ansible.builtin.lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^%wheel'
+        line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+    - name: Add sudoers users to wheel group
+      ansible.builtin.user:
+        name: velociraptor
+        groups: wheel
+        append: yes
+        state: present
+        create_home: no
+    - name: Add ansible-pull cronjob
+      ansible.builtin.cron:
+        name: Ansible auto-provision every 10 minutes
+        user: velociraptor
+        minute: "*/10"
+        job: ansible-pull -o -U https://github.com/illiiilli/ansible_pull_rice.git
+
+
 # run roles
 
 - name: Installing packages for all hosts
