@@ -80,7 +80,7 @@
   tasks:
     - name: Mount Network Drive
       ansible.posix.mount:
-        path: /home/illiiilli/network
+        path: /network1
         src: UUID=32E61FC7E61F8A6D
         fstype: ntfs
         state: mounted
