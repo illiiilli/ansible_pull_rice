@@ -61,7 +61,6 @@
           - cronie
           - ansible
           - ansible-lint
-          - brave-bin
           - discord
           - git
           - git-delta
