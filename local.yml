@@ -16,7 +16,7 @@
       tags: always
       changed_when: False
       when: ansible_distribution in ["Debian", "Ubuntu"]
-      ansible.builtin.apt: 
+      ansible.builtin.apt:
         update_cache: yes
 
 # run roles
@@ -72,7 +72,9 @@
         name: Ansible auto-provision every 10 minutes
         user: velociraptor
         minute: "*/10"
-        job: ansible-pull -o -U https://github.com/illiiilli/ansible_pull_rice.git
+        job: >
+          ansible-pull -o
+          -U https://github.com/illiiilli/ansible_pull_rice.git
 
 - name: Drive configuration for phoenixlinux
   hosts: phoenixlinux
