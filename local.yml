@@ -19,6 +19,30 @@
       ansible.builtin.apt: 
         update_cache: yes
 
+# run roles
+
+- name: Installing packages for all hosts
+  hosts: all
+  become: true # become = become superuser
+  tasks:
+    - name: Install essential packages with default package manager
+      ansible.builtin.package:
+        name: 
+          - cronie
+          - ansible
+          - ansible-lint
+          - discord
+          - git
+          - git-delta
+          - git-lfs
+          - htop
+          - ksysguard
+          - less
+          - mpv
+          - qbittorrent
+          - youtube-dl
+        state: present
+
 - name: Automatically pull changes from Git repository
   hosts: all
   become: true
@@ -47,31 +71,6 @@
         user: velociraptor
         minute: "*/10"
         job: ansible-pull -o -U https://github.com/illiiilli/ansible_pull_rice.git
-
-
-# run roles
-
-- name: Installing packages for all hosts
-  hosts: all
-  become: true # become = become superuser
-  tasks:
-    - name: Install essential packages with default package manager
-      ansible.builtin.package:
-        name: 
-          - cronie
-          - ansible
-          - ansible-lint
-          - discord
-          - git
-          - git-delta
-          - git-lfs
-          - htop
-          - ksysguard
-          - less
-          - mpv
-          - qbittorrent
-          - youtube-dl
-        state: present
 
 - name: Drive configuration for phoenixlinux
   hosts: phoenixlinux
