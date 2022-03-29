@@ -27,7 +27,8 @@
   tasks:
     - name: Install essential packages with default package manager
       ansible.builtin.package:
-        name: 
+        name:
+          - alacritty
           - cronie
           - ansible
           - ansible-lint
@@ -37,6 +38,7 @@
           - git-lfs
           - htop
           - ksysguard
+          - tmux
           - less
           - mpv
           - qbittorrent
